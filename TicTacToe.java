@@ -1,25 +1,18 @@
-public static void tossToDecide() {
-        Random random = new Random();
+import java.util.Scanner;
 
-        int toss = random.nextInt(2); // 0 or 1
+public class TicTacToe {
 
-        char userSymbol;
-        char computerSymbol;
-        String currentPlayer;
+    static Scanner scanner = new Scanner(System.in);
 
-        if (toss == 0) {
-            userSymbol = 'X';
-            computerSymbol = 'O';
-            currentPlayer = "User";
-        } else {
-            userSymbol = 'O';
-            computerSymbol = 'X';
-            currentPlayer = "Computer";
-        }
+    public static void main(String[] args) {
+        int slot = getUserInput();
+        System.out.println("You selected slot: " + slot);
+    }
 
-        System.out.println("\nToss Result:");
-        System.out.println("User Symbol: " + userSymbol);
-        System.out.println("Computer Symbol: " + computerSymbol);
-        System.out.println("First Turn: " + currentPlayer);
+    // UC3: Get user input
+    public static int getUserInput() {
+        System.out.print("Enter a slot number (1-9): ");
+        int slot = scanner.nextInt();
+        return slot;
     }
 }
