@@ -1,29 +1,25 @@
-public class TicTacToe {
+public static void tossToDecide() {
+        Random random = new Random();
 
-    static char[][] board = new char[3][3];
+        int toss = random.nextInt(2); // 0 or 1
 
-    public static void main(String[] args) {
-        initializeBoard();
-        printBoard();
-    }
+        char userSymbol;
+        char computerSymbol;
+        String currentPlayer;
 
-    static void initializeBoard() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = '-';
-            }
+        if (toss == 0) {
+            userSymbol = 'X';
+            computerSymbol = 'O';
+            currentPlayer = "User";
+        } else {
+            userSymbol = 'O';
+            computerSymbol = 'X';
+            currentPlayer = "Computer";
         }
-    }
 
-    static void printBoard() {
-        System.out.println("-------------");
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print("| " + board[i][j] + " ");
-            }
-            System.out.println("|");
-            System.out.println("-------------");
-        }
+        System.out.println("\nToss Result:");
+        System.out.println("User Symbol: " + userSymbol);
+        System.out.println("Computer Symbol: " + computerSymbol);
+        System.out.println("First Turn: " + currentPlayer);
     }
 }
-
