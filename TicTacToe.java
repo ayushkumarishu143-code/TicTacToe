@@ -1,31 +1,43 @@
+import java.util.Random;
+
 public class TicTacToe {
 
-    static char[][] board = new char[3][3];
+    static char[][] board = {
+        {'-', '-', '-'},
+        {'-', '-', '-'},
+        {'-', '-', '-'}
+    };
+
+    static char computerSymbol = 'O';
 
     public static void main(String[] args) {
-
-        // Initialize board first
-        initializeBoard();
-
-        // Place a sample move
-        placeMove(0, 0, 'X');
-
-        // Print updated board
+        printBoard();
+        computerMove();
+        System.out.println("\nAfter computer move:\n");
         printBoard();
     }
 
-    // Initialize board with '-'
-    static void initializeBoard() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = '-';
+    // UC7: Computer random valid move
+    static void computerMove() {
+        Random rand = new Random();
+        int slot;
+        int row, col;
+
+        while (true) {
+            // Generate slot 1–9
+            slot = rand.nextInt(9) + 1;
+
+            // Convert slot → row, col
+            row = (slot - 1) / 3;
+            col = (slot - 1) % 3;
+
+            // Check if cell is empty
+            if (board[row][col] == '-') {
+                board[row][col] = computerSymbol;
+                System.out.println("Computer chose slot: " + slot);
+                break;
             }
         }
-    }
-
-    // UC6: Place move on board
-    static void placeMove(int row, int col, char symbol) {
-        board[row][col] = symbol;
     }
 
     // Print board
