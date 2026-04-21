@@ -1,39 +1,42 @@
 public class TicTacToe {
 
-    // 3x3 Board initialization
-    static char[][] board = {
-        {'-', '-', '-'},
-        {'-', '-', '-'},
-        {'-', '-', '-'}
-    };
+    static char[][] board = new char[3][3];
 
     public static void main(String[] args) {
 
-        // Test cases
-        System.out.println("Move (1,1): " + isValidMove(1, 1)); // true
-        board[1][1] = 'X'; // occupy cell
-        System.out.println("Move (1,1) again: " + isValidMove(1, 1)); // false
-        System.out.println("Move (3,3): " + isValidMove(3, 3)); // false (out of bounds)
+        // Initialize board first
+        initializeBoard();
+
+        // Place a sample move
+        placeMove(0, 0, 'X');
+
+        // Print updated board
+        printBoard();
     }
 
-    /**
-     * UC5: Validate move
-     * Checks:
-     * 1. Row and column are within bounds (0–2)
-     * 2. Cell is empty ('-')
-     */
-    static boolean isValidMove(int row, int col) {
-
-        // Boundary check
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
+    // Initialize board with '-'
+    static void initializeBoard() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board[i][j] = '-';
+            }
         }
+    }
 
-        // Check if cell is empty
-        if (board[row][col] != '-') {
-            return false;
+    // UC6: Place move on board
+    static void placeMove(int row, int col, char symbol) {
+        board[row][col] = symbol;
+    }
+
+    // Print board
+    static void printBoard() {
+        System.out.println("-------------");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print("| " + board[i][j] + " ");
+            }
+            System.out.println("|");
+            System.out.println("-------------");
         }
-
-        return true;
     }
 }
