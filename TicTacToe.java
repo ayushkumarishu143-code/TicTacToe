@@ -1,54 +1,30 @@
-import java.util.Random;
+public static void main(String[] args) {
 
-public class TicTacToe {
+    while (!gameOver) {
 
-    static char[][] board = {
-        {'-', '-', '-'},
-        {'-', '-', '-'},
-        {'-', '-', '-'}
-    };
-
-    static char computerSymbol = 'O';
-
-    public static void main(String[] args) {
-        printBoard();
-        computerMove();
-        System.out.println("\nAfter computer move:\n");
-        printBoard();
-    }
-
-    // UC7: Computer random valid move
-    static void computerMove() {
-        Random rand = new Random();
-        int slot;
-        int row, col;
-
-        while (true) {
-            // Generate slot 1–9
-            slot = rand.nextInt(9) + 1;
-
-            // Convert slot → row, col
-            row = (slot - 1) / 3;
-            col = (slot - 1) % 3;
-
-            // Check if cell is empty
-            if (board[row][col] == '-') {
-                board[row][col] = computerSymbol;
-                System.out.println("Computer chose slot: " + slot);
-                break;
-            }
+        if (isHumanTurn) {
+            System.out.println("Human's Turn");
+            // call function to take human input
+            makeHumanMove();
+        } else {
+            System.out.println("Computer's Turn");
+            // call function for AI move
+            makeComputerMove();
         }
-    }
 
-    // Print board
-    static void printBoard() {
-        System.out.println("-------------");
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print("| " + board[i][j] + " ");
-            }
-            System.out.println("|");
-            System.out.println("-------------");
+        // Check win condition
+        if (checkWin()) {
+            System.out.println((isHumanTurn ? "Human" : "Computer") + " wins!");
+            gameOver = true;
+        }
+        // Check draw condition
+        else if (checkDraw()) {
+            System.out.println("Game is a draw!");
+            gameOver = true;
+        }
+        // Switch turn
+        else {
+            isHumanTurn = !isHumanTurn;
         }
     }
 }
